@@ -5,7 +5,9 @@ package bellamy.armard.project1calculator;
  */
 public class OperatorModel {
 
-    private double calculatorState;
+    Calculator calculator = new Calculator(0.0);
+
+    private double calculatorState = calculator.getCurrentState();
 
     public OperatorModel(){
         this.calculatorState = 0.0;
@@ -17,53 +19,40 @@ public class OperatorModel {
 
 
 
+
+
     public double getCalculatorState(){
-        return this.calculatorState;
+        return calculator.getCurrentState();
     }
 
-    public void addOperator(double number1){
-        calculatorState += number1;
-    }
 
-    public double addOperator(double number1, double number2){
-        calculatorState = number1 + number2;
+    public double addOperator(double number){
+        calculatorState +=  number;
         return calculatorState;
     }
 
-    public void subtractOperator(double number1){
-        calculatorState -= number1;
+    public double subtractOperator(double number){
+        calculatorState -= number;
+        return calculatorState;
     }
 
-    public double subtractOperator(double number1, double number2){
-        calculatorState = number1 - number2;
-        return  calculatorState;
-    }
-
-    public void multiplicationOperator(double number){
+    public double multiplicationOperator(double number){
         calculatorState *= number;
-    }
-
-    public double multiplicationOperator(double number1, double number2){
-        calculatorState = number1 * number2;
         return calculatorState;
     }
 
-    public void divisionOperator(double number){
+    public double divisionOperator(double number){
         calculatorState /= number ;
-    }
-
-    public double divisionOperator(double number1, double number2){
-        calculatorState = number1 / number2;
         return calculatorState;
     }
 
-    public double exponentOperator (double base, double exponent){
-        calculatorState = Math.pow(base, exponent);
+    public double squaredOperator (double base){
+        calculatorState = Math.pow(base, 2);
         return calculatorState;
     }
 
-    public double squaredOperator(double number){
-        calculatorState = number * number;
+    public double exponentOperator(double base, double exponent){
+        calculatorState = base * exponent;
         return  calculatorState;
     }
 
@@ -109,7 +98,7 @@ public class OperatorModel {
     }
 
     public double inverseLogOperator(double number){
-        calculatorState = Math.log10(number);
+        calculatorState = 1 / Math.log(number);
         return calculatorState;
     }
 
@@ -118,9 +107,10 @@ public class OperatorModel {
         return calculatorState;
     }
 
-//    public double inverseNaturalLog(double number){
-//        // Figure this out!!!!!!
-//    }
+    public double inverseNaturalLog(double number){
+        calculatorState= Math.pow(Math.E, calculator.getCurrentState());
+        return calculatorState;
+   }
 
     public double factorial(double number){
         if (number == 1){

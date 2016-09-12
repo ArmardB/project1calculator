@@ -1,31 +1,43 @@
 package bellamy.armard.project1calculator;
 
+import java.util.Scanner;
+
 /**
  * Created by armardbellamy on 9/11/16.
  */
 public class Calculator {
 
-    private double currentState;
+    Scanner scanner = new Scanner(System.in);
 
-    // Sets default state
+
+    private double currentState = 0.0;
+
+//    // Sets default state
     public Calculator(){
         this.currentState = 0.0;
     }
 
     // Sets state with value
     public Calculator(double number){
-        this.currentState = number;
+        currentState = number;
+    }
+
+
+    public void setCurrentState() {
+        System.out.print("Enter value: ");
+        double userInput = scanner.nextDouble();
+        this.currentState = userInput;
     }
 
     // Set state to zero
     public void resetState(){
         currentState = 0.0;
-        System.out.println(getCurrentState());
+        System.out.println("State Reset: " + getCurrentState());
 
     }
     // Get current state
     public double getCurrentState(){
-        return this.currentState;
+        return currentState;
     }
 
 

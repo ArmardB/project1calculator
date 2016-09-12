@@ -19,9 +19,8 @@ public class OperatorModelTest {
 
     @Test
     public void addOperatorTest(){
-        operatorModel.addOperator(4);
-        double expectedValue = 14;
-        double actualValue = operatorModel.getCalculatorState();
+        double expectedValue = 8.0;
+        double actualValue = operatorModel.addOperator(4.0);
         Assert.assertEquals("Should return 4", expectedValue, actualValue, .0001);
 
     }

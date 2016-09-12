@@ -7,7 +7,7 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args){
-
+        Calculator calculator = new Calculator(0);
         Display display = new Display();
         display.welcomeMessage();
         display.runCalculator();

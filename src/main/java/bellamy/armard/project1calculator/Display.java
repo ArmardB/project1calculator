@@ -21,6 +21,7 @@ public class Display {
     }
 
     public void welcomeMessage(){
+        System.out.println();
         System.out.println("####################################");
         System.out.println(" Welcome to the ZipCode Calculator");
         System.out.println("####################################");
@@ -32,14 +33,16 @@ public class Display {
     }
 
     public void displayMainOptionsMenu(){
+        System.out.println();
         System.out.println("*****************************************");
         System.out.println("Enter the number for the desired option: ");
         System.out.println("[1] Basic Math Operators: ");
         System.out.println("[2] Trigonometry Functions ");
         System.out.println("[3] Logarithmic Functions");
         System.out.println("[4] Memory Options");
-        System.out.println("[5] Clear");
-        System.out.println("[6] Settings");
+        System.out.println("[5] Change State");
+        System.out.println("[6] Clear");
+        System.out.println("[7] Settings");
         System.out.println("*****************************************");
         System.out.println();
         userMainMenuChoice();
@@ -47,20 +50,26 @@ public class Display {
     }
 
     public void userMainMenuChoice(){
+        System.out.print("Please enter your selection: ");
         int userChoice = scanner.nextInt();
         switch(userChoice){
             case 1: displayBasicMathOperatorsMenu(); break;
             case 2: displayTrigFunctionsMenu(); break;
             case 3: displayLogFunctionsMenu(); break;
             case 4: displayMemoryOptions(); break;
-            case 5: calculator.resetState(); break;
-            case 6: displayCalculatorSettingsMenu(); break;
+            case 5: calculator.setCurrentState(); break;
+            case 6: calculator.resetState(); break;
+            case 7: displayCalculatorSettingsMenu(); break;
             default:
                 System.out.println("Invalid selection, please choose again.");
         }
     }
 
     public void displayBasicMathOperatorsMenu(){
+        System.out.println();
+        System.out.println("Current State: " + calculator.getCurrentState());
+        System.out.println();
+        System.out.println("*****************************************");
         System.out.println("Enter the number for your desired operation: ");
         System.out.println("[1] Add");
         System.out.println("[2] Subtract");
@@ -141,7 +150,7 @@ public class Display {
                 System.out.println("Ln(" + userValue + ")" + " = " + operator.naturalLogOperator(userValue));
                 break;
             case 4:
-//                System.out.println("Inverse Ln(" + userValue + ")" + " = " + operator.inverseNaturalLog(userValue));
+                System.out.println("Inverse Ln(" + userValue + ")" + " = " + operator.inverseNaturalLog(userValue));
                 break;
         }
     }
@@ -167,8 +176,8 @@ public class Display {
                 System.out.println("Memory Value: " + memory.recallMemory());
                 break;
             case 3:
-                System.out.println("Memory Reset");
-                memory.resetMemory(); break;
+                System.out.println("Memory Reset: " + memory.resetMemory());
+                break;
             default:
                 System.out.println("Invalid choice");
         }
@@ -181,35 +190,37 @@ public class Display {
     }
 
     public void chooseBasicMathOperator(){
+        System.out.println("*****************************************");
+        System.out.print("Please choose your option: ");
         Scanner scanner = new Scanner(System.in);
         int userInput = scanner.nextInt();
         System.out.println("*****************************");
-        System.out.print("Enter first value: ");
-        double value1= scanner.nextDouble();
-        System.out.print("Enter second value: ");
-        double value2 = scanner.nextDouble();
+        System.out.print("Enter value: ");
+        double value= scanner.nextDouble();
 
         switch(userInput){
             case 1:
-                System.out.println(value1 + " + " + value2 + " = " + operator.addOperator(value1, value2));
+                System.out.println(calculator.getCurrentState() + " + " + value + " = " + operator.addOperator(value));
                 break;
             case 2:
-                System.out.println(value1 + " - " + value2 + " = " + operator.subtractOperator(value1, value2));
+                System.out.println(calculator.getCurrentState() + " - " + value + " = " + operator.subtractOperator(value));
                 break;
             case 3:
-                System.out.println(value1 + " * " + value2 + " = " + operator.multiplicationOperator(value1, value2));
+                System.out.println(calculator.getCurrentState() + " * " + value + " = " + operator.multiplicationOperator(value));
                 break;
             case 4:
-                System.out.println(value1 + " / " + value2 + " = " + operator.divisionOperator(value1, value2));
+                System.out.println(calculator.getCurrentState() + " / " + value + " = " + operator.divisionOperator(value));
                 break;
             case 5:
-                System.out.println(value1 + "^" + value2 + " = " + operator.exponentOperator(value1, value2));
+                System.out.print("Enter exponent value: ");
+                double raisedToThePower = scanner.nextDouble();
+                System.out.println(value + "^" + raisedToThePower + " = " + operator.exponentOperator(value, raisedToThePower));
                 break;
             case 6:
-                System.out.println(value1 + " ^2" + " = " + operator.squaredOperator(value1));
+                System.out.println(value + " ^2" + " = " + operator.squaredOperator(value));
                 break;
             case 7:
-                System.out.println(value1 + " + " + value2 + " = " + operator.squareRootOperator(value1));
+                System.out.println("Sqrt:" + " + " + value + " = " + operator.squareRootOperator(value));
                 break;
         }
     }
