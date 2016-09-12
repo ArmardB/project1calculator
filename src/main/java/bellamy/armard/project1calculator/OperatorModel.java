@@ -72,43 +72,53 @@ public class OperatorModel {
         return  calculatorState;
     }
 
-    public void sineOperator(double number){
+    public double sineOperator(double number){
         calculatorState = Math.sin(number);
+        return calculatorState;
     }
 
-    public void cosineOperator(double number){
+    public double cosineOperator(double number){
+
         calculatorState = Math.cos(number);
+        return calculatorState;
     }
 
-    public void tangentOperator(double number){
+    public double tangentOperator(double number){
         calculatorState = Math.tan(number);
+        return calculatorState;
     }
 
-    public void inverseSineOperator(double number){
+    public double inverseSineOperator(double number){
         calculatorState = 1 / Math.sin(number);
+        return  calculatorState;
     }
 
-    public void inverseCosineOperator(double number){
+    public double inverseCosineOperator(double number){
         calculatorState = 1 / Math.cos(number);
+        return calculatorState;
     }
 
-    public void inverseTangentOperator(double number){
+    public double inverseTangentOperator(double number){
         calculatorState = 1 / Math.tan(number);
+        return calculatorState;
     }
 
-    public void logOperator(double number){
+    public double logOperator(double number){
         calculatorState = Math.log(number);
+        return calculatorState;
     }
 
-    public void inverseLogOperator(double number){
+    public double inverseLogOperator(double number){
         calculatorState = Math.log10(number);
+        return calculatorState;
     }
 
-    public void naturalLogOperator(double number){
+    public double naturalLogOperator(double number){
         calculatorState = Math.log1p(number);
+        return calculatorState;
     }
 
-//    public void inverseNaturalLog(double number){
+//    public double inverseNaturalLog(double number){
 //        // Figure this out!!!!!!
 //    }
 
@@ -119,11 +129,13 @@ public class OperatorModel {
         return number * factorial(number - 1);
     }
 
-    public void absoluteValueOperator(double number){
+    public double absoluteValueOperator(double number){
         calculatorState = Math.abs(number);
+        return calculatorState;
     }
 
-    public void cubeRootOperator(double number){
+    public double cubeRootOperator(double number){
         calculatorState = Math.cbrt(number);
+        return calculatorState;
     }
 }

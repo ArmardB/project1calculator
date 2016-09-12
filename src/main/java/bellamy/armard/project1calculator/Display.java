@@ -47,7 +47,6 @@ public class Display {
     }
 
     public void userMainMenuChoice(){
-
         int userChoice = scanner.nextInt();
         switch(userChoice){
             case 1: displayBasicMathOperatorsMenu(); break;
@@ -74,11 +73,77 @@ public class Display {
     }
 
     public void displayTrigFunctionsMenu(){
+        System.out.println("*****************************************");
+        System.out.println("[1]  Sin()");
+        System.out.println("[2]  Cos()");
+        System.out.println("[3]  Tan()");
+        System.out.println("[4]  Inverse Sin()");
+        System.out.println("[5]  Inverse Cos()");
+        System.out.println("[6]  Inverse Tan()");
+        System.out.println("[7]  Log()");
+        System.out.println("[8]  Inverse Log()");
+        System.out.println("[9]  Natural Log()");
+        System.out.println("[10] Inverse Natural Log()");
+        System.out.print("Select the number of your choice: ");
+        chooseTrigFunction();
+    }
 
+    public void chooseTrigFunction(){
+        int userInput = scanner.nextInt();
+        System.out.println("*****************************************");
+        System.out.print("Enter your value: ");
+        double userValue = scanner.nextDouble();
+
+        switch(userInput){
+            case 1:
+                System.out.println("Sin(" + userValue + ")" + " = " + operator.sineOperator(userValue));
+                break;
+            case 2:
+                System.out.println("Cos(" + userValue + ")" + " = " + operator.cosineOperator(userValue));
+                break;
+            case 3:
+                System.out.println("Tan(" + userValue + ")" + " = " + operator.tangentOperator(userValue));
+                break;
+            case 4:
+                System.out.println("Inverse Sin(" + userValue + ")" + " = " + operator.inverseSineOperator(userValue));
+                break;
+            case 5:
+                System.out.println("Inverse Cos(" + userValue + ")" + " = " + operator.inverseCosineOperator(userValue));
+                break;
+            case 6:
+                System.out.println("Inverse Tan(" + userValue + ")" + " = " + operator.inverseTangentOperator(userValue));
+                break;
+        }
     }
 
     public void displayLogFunctionsMenu(){
+        System.out.println("*****************************************");
+        System.out.println("[1] Log()");
+        System.out.println("[2] Inverse Log()");
+        System.out.println("[3] Natural Log()");
+        System.out.println("[4] Inverse Natural Log()");
+        System.out.print("Select the number of your choice: ");
+        chooseLogFunction();
+    }
 
+    public void chooseLogFunction(){
+        int userInput = scanner.nextInt();
+        System.out.println("*****************************************");
+        double userValue = scanner.nextDouble();
+        switch (userInput) {
+            case 1:
+                System.out.println("Log(" + userValue + ")" + " = " + operator.logOperator(userValue));
+                break;
+            case 2:
+                System.out.println("Inverse Log(" + userValue + ")" + " = " + operator.inverseLogOperator(userValue));
+                break;
+            case 3:
+                System.out.println("Ln(" + userValue + ")" + " = " + operator.naturalLogOperator(userValue));
+                break;
+            case 4:
+//                System.out.println("Inverse Ln(" + userValue + ")" + " = " + operator.inverseNaturalLog(userValue));
+                break;
+        }
     }
 
     public void displayMemoryOptions(){
@@ -95,8 +160,9 @@ public class Display {
         int userInput = scanner.nextInt();
         switch (userInput){
             case 1:
-                System.out.println("Memory Set");
-                memory.setMemory(); break;
+                memory.setMemory();
+                System.out.println("Memory Set: " + memory.recallMemory());
+                break;
             case 2:
                 System.out.println("Memory Value: " + memory.recallMemory());
                 break;
