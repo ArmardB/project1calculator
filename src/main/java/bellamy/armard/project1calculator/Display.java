@@ -31,8 +31,7 @@ public class Display {
     }
 
     public void displayMainOptionsMenu(){
-        System.out.println();
-        System.out.println("Current Mode:  " + mode.getDisplayMode());
+        mainDisplay();
         System.out.println();
         System.out.println("*****************************************");
         System.out.println("Enter the number for the desired option: ");
@@ -42,7 +41,8 @@ public class Display {
         System.out.println("[4] Memory Options");
         System.out.println("[5] Change State");
         System.out.println("[6] Clear");
-        System.out.println("[7] Settings");
+        System.out.println("[7] Change Mode");
+        System.out.println("[8] Exit");
         System.out.println("*****************************************");
         System.out.println();
         userMainMenuChoice();
@@ -57,19 +57,23 @@ public class Display {
             case 2: displayTrigFunctionsMenu(); break;
             case 3: displayLogFunctionsMenu(); break;
             case 4: displayMemoryOptions(); break;
-            case 5: calculator.setCurrentState(); break;
+            case 5: calculator.userResetState(); break;
             case 6: calculator.resetState(); break;
-            case 7: switchModeMenu(); break;
+            case 7: changeModeMenu(); break;
+            case 8: exitCalculator(); break;
             default:
                 System.out.println("Invalid selection, please choose again.");
         }
     }
 
-    public void displayBasicMathOperatorsMenu(){
-        System.out.println();
-        System.out.println("Current State: " + calculator.getCurrentState());
-        System.out.println();
+    public void mainDisplay(){
         System.out.println("*****************************************");
+        System.out.println("Current State: " + calculator.getCurrentState());
+        System.out.println("Current Mode: " + mode.getDisplayMode());
+        System.out.println("*****************************************");
+    }
+
+    public void displayBasicMathOperatorsMenu(){
         System.out.println("Enter the number for your desired operation: ");
         System.out.println("[1] Add");
         System.out.println("[2] Subtract");
@@ -92,27 +96,52 @@ public class Display {
 
         switch(userInput){
             case 1:
-                System.out.println(calculator.getCurrentState() + " + " + value + " = " + operator.addOperator(calculator.getCurrentState(), value));
+                double addIt = operator.addOperator(calculator.getCurrentState(), value);
+                System.out.printf("%.2f + %.2f = %.2f", calculator.getCurrentState(), value, operator.addOperator(calculator.getCurrentState(), value));
+                System.out.println();
+                calculator.setCurrentState(addIt);
                 break;
             case 2:
-                System.out.println(calculator.getCurrentState() + " - " + value + " = " + operator.subtractOperator(calculator.getCurrentState() ,value));
+                double subtractIt = operator.addOperator(calculator.getCurrentState(), value);
+                System.out.printf("%.2f - %.2f = %.2f", calculator.getCurrentState(), value, operator.subtractOperator(calculator.getCurrentState(), value));
+                System.out.println();
+                calculator.setCurrentState(subtractIt);
                 break;
             case 3:
-                System.out.println(calculator.getCurrentState() + " * " + value + " = " + operator.multiplicationOperator(calculator.getCurrentState(),value));
+                double multiplyNums = operator.addOperator(calculator.getCurrentState(), value);
+                System.out.printf("%.2f * %.2f = %.2f", calculator.getCurrentState(), value, operator.multiplicationOperator(calculator.getCurrentState(), value));
+                System.out.println();
+                calculator.setCurrentState(multiplyNums);
                 break;
             case 4:
-                System.out.println(calculator.getCurrentState() + " / " + value + " = " + operator.divisionOperator(calculator.getCurrentState(), value));
+                double divideNums = operator.addOperator(calculator.getCurrentState(), value);
+                System.out.printf("%.2f / %.2f = %.2f", calculator.getCurrentState(), value, operator.divisionOperator(calculator.getCurrentState(), value));
+                System.out.println();
+                calculator.setCurrentState(divideNums);
                 break;
             case 5:
+                System.out.print("Enter base value: ");
+                double baseValue = scanner.nextDouble();
                 System.out.print("Enter exponent value: ");
-                double raisedToThePower = scanner.nextDouble();
-                System.out.println(value + "^" + raisedToThePower + " = " + operator.exponentOperator(value, raisedToThePower));
+                double exponentValue = scanner.nextDouble();
+                double performedExponentiation = operator.exponentOperator(baseValue, exponentValue);
+                System.out.println(baseValue + "^" + exponentValue + " = " + operator.exponentOperator(baseValue, exponentValue));
+                System.out.printf("%.2f^%.2f = %.2f", baseValue, exponentValue, performedExponentiation);
+                System.out.println();
+                calculator.setCurrentState(performedExponentiation);
                 break;
             case 6:
-                System.out.println(value + " ^2" + " = " + operator.squaredOperator(value));
+                double valueSquared = operator.squaredOperator(value);
+                System.out.printf("%.2f^2 = %.2f", value, valueSquared);
+                System.out.println();
+                calculator.setCurrentState(valueSquared);
                 break;
             case 7:
+                double squareRoot = operator.squareRootOperator(value);
                 System.out.println("Sqrt:" + " + " + value + " = " + operator.squareRootOperator(value));
+                System.out.printf("sqrt: %.2f = %.2f", value, squareRoot);
+                System.out.println();
+                calculator.setCurrentState(squareRoot);
                 break;
         }
     }
@@ -144,7 +173,7 @@ public class Display {
             case 0:
                 break;
             case 1:
-                System.out.println("[   " + "Sin(" + userValue + ")" + " = " + convertTrigUnits(operator.sineOperator(userValue)) + "   ]m");
+                System.out.println("Sin(" + userValue + ")" + " = " + convertTrigUnits(operator.sineOperator(userValue)));
                 break;
             case 2:
                 System.out.println("Cos(" + userValue + ")" + " = " + convertTrigUnits(operator.cosineOperator(userValue)));
@@ -253,9 +282,13 @@ public class Display {
 
     }
 
-    public void switchModeMenu(){
+    public void changeModeMenu(){
         mode.displayModeMenu();
 
+    }
+
+    public void exitCalculator(){
+        isRunning = false;
     }
 
     public void clearDisplay(){

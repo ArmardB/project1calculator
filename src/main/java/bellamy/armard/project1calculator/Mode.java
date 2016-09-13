@@ -52,7 +52,7 @@ public class Mode {
         }
     }
 
-    public void displayModeViews(int number){
+    public void displayModeConversions(int number){
         switch (getDisplayMode()){
             case BINARY: toBinary(number); break;
             case HEXADECIMAL: toHexadecimal(number);break;

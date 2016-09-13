@@ -15,10 +15,8 @@ public class Calculator {
         currentState = 0.0;
     }
 
-    public void setCurrentState() {
-        System.out.print("Enter value: ");
-        double userInput = scanner.nextDouble();
-        currentState = userInput;
+    public void setCurrentState(double number) {
+        currentState = number;
     }
 
     // Set state to zero
@@ -29,7 +27,12 @@ public class Calculator {
     }
     // Get current state
     public double getCurrentState(){
-        return currentState;
+        return this.currentState;
+    }
+
+    public void userResetState(){
+        double userState = scanner.nextDouble();
+        currentState = userState;
     }
 
 
