@@ -68,7 +68,7 @@ public class Display {
 
     public void mainDisplay(){
         System.out.println("*****************************************");
-        System.out.println("Current State: " + calculator.getCurrentState());
+        System.out.println("Current State: " + mode.displayModeConversions(calculator.getCurrentState()));
         System.out.println("Current Mode: " + mode.getDisplayMode());
         System.out.println("*****************************************");
     }
@@ -82,6 +82,7 @@ public class Display {
         System.out.println("[5] Exponent");
         System.out.println("[6] Square");
         System.out.println("[7] Sqrt");
+        System.out.println("[8] Factorial");
         chooseBasicMathOperator();
     }
 
@@ -138,11 +139,15 @@ public class Display {
                 break;
             case 7:
                 double squareRoot = operator.squareRootOperator(value);
-                System.out.println("Sqrt:" + " + " + value + " = " + operator.squareRootOperator(value));
-                System.out.printf("sqrt: %.2f = %.2f", value, squareRoot);
+                System.out.printf("Sqrt: %.2f = %.2f", value, squareRoot);
                 System.out.println();
                 calculator.setCurrentState(squareRoot);
                 break;
+            case 8:
+                double factorial = operator.factorial(value);
+                System.out.printf("Factorial: %.2f", factorial);
+                System.out.println();
+                calculator.setCurrentState(factorial);
         }
     }
 
@@ -173,22 +178,40 @@ public class Display {
             case 0:
                 break;
             case 1:
-                System.out.println("Sin(" + userValue + ")" + " = " + convertTrigUnits(operator.sineOperator(userValue)));
+                double sine = operator.sineOperator(userValue);
+                System.out.printf("Sin(%.2f)", sine);
+                System.out.println();
+                calculator.setCurrentState(sine);
                 break;
             case 2:
-                System.out.println("Cos(" + userValue + ")" + " = " + convertTrigUnits(operator.cosineOperator(userValue)));
+                double cosine = operator.cosineOperator(userValue);
+                System.out.printf("Cos(%.2f)", cosine);
+                System.out.println();
+                calculator.setCurrentState(cosine);
                 break;
             case 3:
-                System.out.println("Tan(" + userValue + ")" + " = " + convertTrigUnits(operator.tangentOperator(userValue)));
+                double tangent = operator.tangentOperator(userValue);
+                System.out.printf("Tan(%.2f)", tangent);
+                System.out.println();
+                calculator.setCurrentState(tangent);
                 break;
             case 4:
-                System.out.println("Inverse Sin(" + userValue + ")" + " = " + convertTrigUnits(operator.inverseSineOperator(userValue)));
+                double inverseSine = operator.inverseSineOperator(userValue);
+                System.out.printf("InvSin(%.2f)", inverseSine);
+                System.out.println();
+                calculator.setCurrentState(inverseSine);
                 break;
             case 5:
-                System.out.println("Inverse Cos(" + userValue + ")" + " = " + convertTrigUnits(operator.inverseCosineOperator(userValue)));
+                double inverseCos = operator.inverseCosineOperator(userValue);
+                System.out.printf("InvCOS(%.2f)", inverseCos);
+                System.out.println();
+                calculator.setCurrentState(inverseCos);
                 break;
             case 6:
-                System.out.println("Inverse Tan(" + userValue + ")" + " = " + convertTrigUnits(operator.inverseTangentOperator(userValue)));
+                double inverseTan = operator.inverseSineOperator(userValue);
+                System.out.printf("InvTan(%.2f)", inverseTan);
+                System.out.println();
+                calculator.setCurrentState(inverseTan);
                 break;
         }
     }
@@ -237,16 +260,28 @@ public class Display {
         double userValue = scanner.nextDouble();
         switch (userInput) {
             case 1:
-                System.out.println("Log(" + userValue + ")" + " = " + operator.logOperator(userValue));
+                double log = operator.logOperator(userValue);
+                System.out.printf("Log(%.2f)", log);
+                System.out.println();
+                calculator.setCurrentState(log);
                 break;
             case 2:
-                System.out.println("Inverse Log(" + userValue + ")" + " = " + operator.inverseLogOperator(userValue));
+                double inverseLog = operator.inverseLogOperator(userValue);
+                System.out.printf("InverseLog(%.2f)", inverseLog);
+                System.out.println();
+                calculator.setCurrentState(inverseLog);
                 break;
             case 3:
-                System.out.println("Ln(" + userValue + ")" + " = " + operator.naturalLogOperator(userValue));
+                double naturalLog = operator.naturalLogOperator(userValue);
+                System.out.printf("Ln(%.2f)", naturalLog);
+                System.out.println();
+                calculator.setCurrentState(naturalLog);
                 break;
             case 4:
-                System.out.println("Inverse Ln(" + userValue + ")" + " = " + operator.inverseNaturalLog(userValue));
+                double inverseNaturalLog = operator.inverseNaturalLog(userValue);
+                System.out.printf("InvLn(%.2f)", inverseNaturalLog);
+                System.out.println();
+                calculator.setCurrentState(inverseNaturalLog);
                 break;
         }
     }

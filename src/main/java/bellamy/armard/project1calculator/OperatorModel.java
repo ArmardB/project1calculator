@@ -79,6 +79,10 @@ public class OperatorModel {
    }
 
     public double factorial(double number){
+        if (number < 0){
+            System.out.println("ERROR CANNOT COMPUTE");
+            return -1;
+        }
         if (number == 1){
             return 1;
         }

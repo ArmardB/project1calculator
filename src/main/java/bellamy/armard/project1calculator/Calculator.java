@@ -21,6 +21,7 @@ public class Calculator {
 
     // Set state to zero
     public void resetState(){
+        System.out.print("Enter value: 5");
         currentState = 0.0;
         System.out.println("State Reset: " + getCurrentState());
 

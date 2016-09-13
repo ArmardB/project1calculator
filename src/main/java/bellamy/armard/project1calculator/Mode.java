@@ -52,14 +52,22 @@ public class Mode {
         }
     }
 
-    public void displayModeConversions(int number){
-        switch (getDisplayMode()){
-            case BINARY: toBinary(number); break;
-            case HEXADECIMAL: toHexadecimal(number);break;
-            case OCTAL: toOctal(number); break;
-            case DECIMAL:
-                break;
+    public void autoToggleDisplayMode(){
+        DisplayMode displayMode = getDisplayMode();
+        switch(displayMode){
+            case BINARY:
+                setDisplayMode(DisplayMode.OCTAL);
         }
+    }
+
+    public String displayModeConversions(double number){
+        switch (getDisplayMode()){
+            case BINARY: return toBinary(number);
+            case HEXADECIMAL: return toHexadecimal(number);
+            case OCTAL: return toOctal(number);
+            case DECIMAL: return ""+number;
+        }
+        return "";
     }
 
     public String toBinary(double number){
