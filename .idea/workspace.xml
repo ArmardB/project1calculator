@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9ef52604-4da7-49de-a110-bb81cb015f11" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CalculatorUML.xml" afterPath="$PROJECT_DIR$/CalculatorUML.xml" />
-    </list>
+    <list default="true" id="9ef52604-4da7-49de-a110-bb81cb015f11" name="Default" comment="" />
     <ignored path="project1calculator.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -139,8 +137,8 @@
       <file leaf-file-name="Mode.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/bellamy/armard/project1calculator/Mode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-477">
-              <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+            <state relative-caret-position="348">
+              <caret line="69" column="47" selection-start-line="69" selection-start-column="47" selection-end-line="69" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -873,7 +871,7 @@
       <option name="presentableId" value="Default" />
       <updated>1473555204821</updated>
       <workItem from="1473555208811" duration="48872000" />
-      <workItem from="1473707091643" duration="20975000" />
+      <workItem from="1473707091643" duration="21121000" />
     </task>
     <servers />
   </component>
@@ -910,7 +908,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69847000" />
+    <option name="totallyTimeSpent" value="69993000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="709" extended-state="6" />
@@ -1199,8 +1197,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/bellamy/armard/project1calculator/Mode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-477">
-          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+        <state relative-caret-position="348">
+          <caret line="69" column="47" selection-start-line="69" selection-start-column="47" selection-end-line="69" selection-end-column="47" />
           <folding />
         </state>
       </provider>
