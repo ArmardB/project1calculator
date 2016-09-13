@@ -10,13 +10,15 @@ public class Display {
     OperatorModel operator = new OperatorModel();
     Calculator calculator = new Calculator();
     Memory memory = new Memory();
+    Mode mode = new Mode();
     Scanner scanner = new Scanner(System.in);
     boolean isRunning = true;
+    String trigUnits = "DEGREES";
+
 
     public void runCalculator(){
         while(isRunning){
             displayMainOptionsMenu();
-
         }
     }
 
@@ -28,11 +30,9 @@ public class Display {
         System.out.println();
     }
 
-    public void clearDisplay(){
-        calculator.resetState();
-    }
-
     public void displayMainOptionsMenu(){
+        System.out.println();
+        System.out.println("Current Mode:  " + mode.getDisplayMode());
         System.out.println();
         System.out.println("*****************************************");
         System.out.println("Enter the number for the desired option: ");
@@ -59,7 +59,7 @@ public class Display {
             case 4: displayMemoryOptions(); break;
             case 5: calculator.setCurrentState(); break;
             case 6: calculator.resetState(); break;
-            case 7: displayCalculatorSettingsMenu(); break;
+            case 7: switchModeMenu(); break;
             default:
                 System.out.println("Invalid selection, please choose again.");
         }
@@ -81,8 +81,45 @@ public class Display {
         chooseBasicMathOperator();
     }
 
+    public void chooseBasicMathOperator(){
+        System.out.println("*****************************************");
+        System.out.print("Please choose your option: ");
+        Scanner scanner = new Scanner(System.in);
+        int userInput = scanner.nextInt();
+        System.out.println("*****************************************");
+        System.out.print("Enter value: ");
+        double value= scanner.nextDouble();
+
+        switch(userInput){
+            case 1:
+                System.out.println(calculator.getCurrentState() + " + " + value + " = " + operator.addOperator(calculator.getCurrentState(), value));
+                break;
+            case 2:
+                System.out.println(calculator.getCurrentState() + " - " + value + " = " + operator.subtractOperator(calculator.getCurrentState() ,value));
+                break;
+            case 3:
+                System.out.println(calculator.getCurrentState() + " * " + value + " = " + operator.multiplicationOperator(calculator.getCurrentState(),value));
+                break;
+            case 4:
+                System.out.println(calculator.getCurrentState() + " / " + value + " = " + operator.divisionOperator(calculator.getCurrentState(), value));
+                break;
+            case 5:
+                System.out.print("Enter exponent value: ");
+                double raisedToThePower = scanner.nextDouble();
+                System.out.println(value + "^" + raisedToThePower + " = " + operator.exponentOperator(value, raisedToThePower));
+                break;
+            case 6:
+                System.out.println(value + " ^2" + " = " + operator.squaredOperator(value));
+                break;
+            case 7:
+                System.out.println("Sqrt:" + " + " + value + " = " + operator.squareRootOperator(value));
+                break;
+        }
+    }
+
     public void displayTrigFunctionsMenu(){
         System.out.println("*****************************************");
+        System.out.println("[0]  Switch Mode");
         System.out.println("[1]  Sin()");
         System.out.println("[2]  Cos()");
         System.out.println("[3]  Tan()");
@@ -97,32 +134,62 @@ public class Display {
         chooseTrigFunction();
     }
 
-    public void chooseTrigFunction(){
+    public void chooseTrigFunction() {
         int userInput = scanner.nextInt();
         System.out.println("*****************************************");
         System.out.print("Enter your value: ");
         double userValue = scanner.nextDouble();
 
-        switch(userInput){
+        switch (userInput) {
+            case 0:
+                break;
             case 1:
-                System.out.println("Sin(" + userValue + ")" + " = " + operator.sineOperator(userValue));
+                System.out.println("[   " + "Sin(" + userValue + ")" + " = " + convertTrigUnits(operator.sineOperator(userValue)) + "   ]m");
                 break;
             case 2:
-                System.out.println("Cos(" + userValue + ")" + " = " + operator.cosineOperator(userValue));
+                System.out.println("Cos(" + userValue + ")" + " = " + convertTrigUnits(operator.cosineOperator(userValue)));
                 break;
             case 3:
-                System.out.println("Tan(" + userValue + ")" + " = " + operator.tangentOperator(userValue));
+                System.out.println("Tan(" + userValue + ")" + " = " + convertTrigUnits(operator.tangentOperator(userValue)));
                 break;
             case 4:
-                System.out.println("Inverse Sin(" + userValue + ")" + " = " + operator.inverseSineOperator(userValue));
+                System.out.println("Inverse Sin(" + userValue + ")" + " = " + convertTrigUnits(operator.inverseSineOperator(userValue)));
                 break;
             case 5:
-                System.out.println("Inverse Cos(" + userValue + ")" + " = " + operator.inverseCosineOperator(userValue));
+                System.out.println("Inverse Cos(" + userValue + ")" + " = " + convertTrigUnits(operator.inverseCosineOperator(userValue)));
                 break;
             case 6:
-                System.out.println("Inverse Tan(" + userValue + ")" + " = " + operator.inverseTangentOperator(userValue));
+                System.out.println("Inverse Tan(" + userValue + ")" + " = " + convertTrigUnits(operator.inverseTangentOperator(userValue)));
                 break;
         }
+    }
+
+        public double convertTrigUnits(double number){
+            if(trigUnits.equals("DEGREES")){
+                return Math.toDegrees(number);
+            }
+            return Math.toRadians(number);
+    }
+
+        public void switchTrigUnits(){
+            System.out.println("*****************************************");
+            System.out.println("[1] DEGREES");
+            System.out.println("[2] RADIANS");
+            System.out.println("Enter number: ");
+            int userInput = scanner.nextInt();
+
+            switch(userInput){
+                case 1: if (trigUnits.equals("RADIANS")){
+                    trigUnits = "DEGREES";
+                } else{
+                    System.out.println("Already in DEGREES");
+                }
+                case 2: if (trigUnits.equals("DEGREES")){
+                    trigUnits = "RADIANS";
+                }else{
+                    System.out.println("Already in RADIANS");
+                }
+            }
     }
 
     public void displayLogFunctionsMenu(){
@@ -169,14 +236,15 @@ public class Display {
         int userInput = scanner.nextInt();
         switch (userInput){
             case 1:
-                memory.setMemory();
+                memory.setMemory(calculator.getCurrentState());
                 System.out.println("Memory Set: " + memory.recallMemory());
                 break;
             case 2:
                 System.out.println("Memory Value: " + memory.recallMemory());
                 break;
             case 3:
-                System.out.println("Memory Reset: " + memory.resetMemory());
+                memory.resetMemory();
+                System.out.println("Memory Reset: 0.0");
                 break;
             default:
                 System.out.println("Invalid choice");
@@ -185,44 +253,15 @@ public class Display {
 
     }
 
-    public void displayCalculatorSettingsMenu(){
+    public void switchModeMenu(){
+        mode.displayModeMenu();
 
     }
 
-    public void chooseBasicMathOperator(){
-        System.out.println("*****************************************");
-        System.out.print("Please choose your option: ");
-        Scanner scanner = new Scanner(System.in);
-        int userInput = scanner.nextInt();
-        System.out.println("*****************************");
-        System.out.print("Enter value: ");
-        double value= scanner.nextDouble();
-
-        switch(userInput){
-            case 1:
-                System.out.println(calculator.getCurrentState() + " + " + value + " = " + operator.addOperator(value));
-                break;
-            case 2:
-                System.out.println(calculator.getCurrentState() + " - " + value + " = " + operator.subtractOperator(value));
-                break;
-            case 3:
-                System.out.println(calculator.getCurrentState() + " * " + value + " = " + operator.multiplicationOperator(value));
-                break;
-            case 4:
-                System.out.println(calculator.getCurrentState() + " / " + value + " = " + operator.divisionOperator(value));
-                break;
-            case 5:
-                System.out.print("Enter exponent value: ");
-                double raisedToThePower = scanner.nextDouble();
-                System.out.println(value + "^" + raisedToThePower + " = " + operator.exponentOperator(value, raisedToThePower));
-                break;
-            case 6:
-                System.out.println(value + " ^2" + " = " + operator.squaredOperator(value));
-                break;
-            case 7:
-                System.out.println("Sqrt:" + " + " + value + " = " + operator.squareRootOperator(value));
-                break;
-        }
+    public void clearDisplay(){
+        calculator.resetState();
     }
+
+
 
 }

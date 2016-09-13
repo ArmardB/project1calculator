@@ -5,111 +5,77 @@ package bellamy.armard.project1calculator;
  */
 public class OperatorModel {
 
-    Calculator calculator = new Calculator(0.0);
-
-    private double calculatorState = calculator.getCurrentState();
-
-    public OperatorModel(){
-        this.calculatorState = 0.0;
+    public double addOperator(double state, double number){
+        return state += number;
     }
 
-    public OperatorModel(double number){
-        this.calculatorState = number;
+    public double subtractOperator(double state, double number){
+        return state -= number;
     }
 
-
-
-
-
-    public double getCalculatorState(){
-        return calculator.getCurrentState();
+    public double multiplicationOperator(double state, double number){
+        return state *= number;
     }
 
-
-    public double addOperator(double number){
-        calculatorState +=  number;
-        return calculatorState;
-    }
-
-    public double subtractOperator(double number){
-        calculatorState -= number;
-        return calculatorState;
-    }
-
-    public double multiplicationOperator(double number){
-        calculatorState *= number;
-        return calculatorState;
-    }
-
-    public double divisionOperator(double number){
-        calculatorState /= number ;
-        return calculatorState;
+    public double divisionOperator(double state, double number){
+        if (number == 0){
+            System.out.println("ERR: CANNOT DIVIDE BY 0");
+        }else{
+            return state /= number;
+        }
+        return 0;
     }
 
     public double squaredOperator (double base){
-        calculatorState = Math.pow(base, 2);
-        return calculatorState;
+        return Math.pow(base, 2);
     }
 
     public double exponentOperator(double base, double exponent){
-        calculatorState = base * exponent;
-        return  calculatorState;
+        return  base * exponent;
     }
 
     public double squareRootOperator(double number){
-        calculatorState = Math.sqrt(number);
-        return  calculatorState;
+        return  Math.sqrt(number);
     }
 
     public double sineOperator(double number){
-        calculatorState = Math.sin(number);
-        return calculatorState;
+        return Math.sin(number);
     }
 
     public double cosineOperator(double number){
-
-        calculatorState = Math.cos(number);
-        return calculatorState;
+        return Math.cos(number);
     }
 
     public double tangentOperator(double number){
-        calculatorState = Math.tan(number);
-        return calculatorState;
+        return Math.tan(number);
     }
 
     public double inverseSineOperator(double number){
-        calculatorState = 1 / Math.sin(number);
-        return  calculatorState;
+        return  Math.asin(number);
     }
 
     public double inverseCosineOperator(double number){
-        calculatorState = 1 / Math.cos(number);
-        return calculatorState;
+        return Math.acos(number);
     }
 
     public double inverseTangentOperator(double number){
-        calculatorState = 1 / Math.tan(number);
-        return calculatorState;
+        return Math.atan(number);
     }
 
     public double logOperator(double number){
-        calculatorState = Math.log(number);
-        return calculatorState;
+        return Math.log10(number);
     }
 
     public double inverseLogOperator(double number){
-        calculatorState = 1 / Math.log(number);
-        return calculatorState;
+        return Math.exp(number);
     }
 
     public double naturalLogOperator(double number){
-        calculatorState = Math.log1p(number);
-        return calculatorState;
+        return Math.log(number);
     }
 
     public double inverseNaturalLog(double number){
-        calculatorState= Math.pow(Math.E, calculator.getCurrentState());
-        return calculatorState;
+        return Math.pow(Math.E, number);
    }
 
     public double factorial(double number){
@@ -120,12 +86,14 @@ public class OperatorModel {
     }
 
     public double absoluteValueOperator(double number){
-        calculatorState = Math.abs(number);
-        return calculatorState;
+        return Math.abs(number);
     }
 
     public double cubeRootOperator(double number){
-        calculatorState = Math.cbrt(number);
-        return calculatorState;
+        return Math.cbrt(number);
+    }
+
+    public double switchSign(double number){
+        return number *= 1;
     }
 }

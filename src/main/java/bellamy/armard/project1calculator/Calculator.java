@@ -8,25 +8,17 @@ import java.util.Scanner;
 public class Calculator {
 
     Scanner scanner = new Scanner(System.in);
+    private double currentState;
 
-
-    private double currentState = 0.0;
-
-//    // Sets default state
+   // Sets default state
     public Calculator(){
-        this.currentState = 0.0;
+        currentState = 0.0;
     }
-
-    // Sets state with value
-    public Calculator(double number){
-        currentState = number;
-    }
-
 
     public void setCurrentState() {
         System.out.print("Enter value: ");
         double userInput = scanner.nextDouble();
-        this.currentState = userInput;
+        currentState = userInput;
     }
 
     // Set state to zero

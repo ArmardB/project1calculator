@@ -5,21 +5,18 @@ package bellamy.armard.project1calculator;
  */
 public class Memory {
 
-    private double rememberMe;
 
-    Calculator calculator = new Calculator();
     private double memory;
 
-    public void setMemory(){
-        this.rememberMe = calculator.getCurrentState();
+    public void setMemory(double state){
+        memory = state;
     }
 
-    public double resetMemory(){
-        this.rememberMe = 0.0;
-        return rememberMe;
+    public void resetMemory(){
+        memory = 0.0;
     }
 
     public double recallMemory(){
-        return rememberMe;
+        return memory;
     }
 }
